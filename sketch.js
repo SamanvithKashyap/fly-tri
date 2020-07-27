@@ -155,6 +155,8 @@ if(frameCount%50===0){
     gameover.visible = true;
     if(mousePressedOver(restart)|| touches.length>0) {
       reset();
+      touches=[];
+
     }
     }
 
@@ -169,10 +171,13 @@ if(frameCount%50===0){
 function move(){
   if(keyDown("LEFT_ARROW")|| touches.length>0){
     rocket.x = rocket.x - 10;
+    touches=[];
     //moveSound.play();
   }
   if(keyDown("RIGHT_ARROW")|| touches.length>0){
     rocket.x = rocket.x + 10;
+    touches=[];
+
     //moveSound.play();
   }
 }
