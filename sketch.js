@@ -48,9 +48,9 @@ function setup(){
   obstaclesGroup5 = new Group();
   planetGroup = new Group();
   bulletGroup = new Group();
-  var right = createSprite(width,height/2,1,width); 
+  var right = createSprite(width,height/2,1,height); 
   edges.add(right); 
-  var left = createSprite(0,height/2,1,width); 
+  var left = createSprite(0,height/2,1,height); 
   edges.add(left);
   //var right = createSprite(600,300,1,600);
   //edges.add(right);
@@ -97,7 +97,7 @@ function draw(){
     }
     
    
-   if(frameCount%5===0){
+   if(frameCount%2===0){
     if (keyDown("space")|| touches.length>0){
       createBullet(rocket.x,rocket.y -33);
       shootSound.play();
@@ -123,6 +123,9 @@ function draw(){
       score = score + 200;   
       planetGroup.destroyEach();
       bulletGroup.destroyEach();
+    }
+    if(touches.value === (50,50)){
+      text("fgbwuiogbwhigbwo",width/2,height/2);
     }
 
     //console.log(score);
@@ -190,7 +193,7 @@ function createObstacles1(){
 function createPlanets(){
   if(frameCount%200===0){
     var planet = createSprite(random(30,570),random(10,300),1,1);
-    planet.velocityY = 5;
+    planet.velocityY = 8;
     planet.scale = 0.6;
     planetGroup.add(planet);
     var rand = Math.round(random(1,3));
