@@ -66,6 +66,7 @@ function setup(){
   restart.visible = false;
   gameover = createSprite(width/2,height/2);
   gameover.addImage("gameover",gameoverImage);
+  gameover.scale = 0.8;
   gameover.visible = false;
   ground = createSprite(width/2,height/2,width,height);
   //ground.visible = false;
@@ -78,7 +79,7 @@ function setup(){
 
   }
   
-  ground.scale = 4;
+  ground.scale = 2;
   ground.depth = rocket.depth -5;
   
   
@@ -97,7 +98,7 @@ function draw(){
     }
     
    
-   if(frameCount%2===0){
+   if(frameCount%3===0){
     if (keyDown("space")|| touches.length>0){
       createBullet(rocket.x,rocket.y -33);
       shootSound.play();
@@ -124,9 +125,7 @@ function draw(){
       planetGroup.destroyEach();
       bulletGroup.destroyEach();
     }
-    if(touches.value === (50,50)){
-      text("fgbwuiogbwhigbwo",width/2,height/2);
-    }
+   
 
     //console.log(score);
     
@@ -168,11 +167,11 @@ if(frameCount%50===0){
 }
 
 function move(){
-  if(keyDown("LEFT_ARROW")){
+  if(keyDown("LEFT_ARROW")|| touches.length>0){
     rocket.x = rocket.x - 10;
     //moveSound.play();
   }
-  if(keyDown("RIGHT_ARROW")){
+  if(keyDown("RIGHT_ARROW")|| touches.length>0){
     rocket.x = rocket.x + 10;
     //moveSound.play();
   }
@@ -180,11 +179,12 @@ function move(){
 
 function createObstacles1(){
   var obstacle = createSprite(0,0,1,1);
-  obstacle.x = Math.round(random(50,width-50));
+  obstacle.x = Math.round(random(25,width-25));
   obstacle.y = Math.round(random(50,200));
   obstacle.addImage("obstacle",obstacle_image);
   obstacle.scale = 0.07;
   obstacle.velocityY = 8;
+  obstaclesGroup1.setLifetimeEach(200);
   obstaclesGroup1.add(obstacle);
   
 }
@@ -196,6 +196,7 @@ function createPlanets(){
     planet.velocityY = 8;
     planet.scale = 0.6;
     planetGroup.add(planet);
+    planetGroup.setLifetimeEach(200);
     var rand = Math.round(random(1,3));
     switch(rand) {
       case 1: planet.addImage(planet0);
