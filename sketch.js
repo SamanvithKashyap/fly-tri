@@ -99,11 +99,10 @@ function draw(){
     
    
    if(frameCount%3===0){
-    if (keyDown("space")|| touches.length>0){
+    if (keyDown("space")){
       createBullet(rocket.x,rocket.y -33);
       shootSound.play();
-      touches = [];
-       }
+           }
          }
     if(obstaclesGroup1.isTouching(rocket)){
     gameState = END;
