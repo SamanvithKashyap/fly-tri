@@ -168,16 +168,15 @@ if(frameCount%50===0){
 }
 
 function move(){
-  if(keyDown("LEFT_ARROW")|| touches.length>0){
-    rocket.x = rocket.x - 10;
-    touches=[];
-    //moveSound.play();
-  }
-  if(keyDown("RIGHT_ARROW")|| touches.length>0){
-    rocket.x = rocket.x + 10;
-    touches=[];
+  if(touches.length>0){
 
-    //moveSound.play();
+    if(keyDown("LEFT_ARROW")){
+      rocket.x = rocket.x - 10;
+    }
+    if(keyDown("RIGHT_ARROW")){
+      rocket.x = rocket.x + 10;
+    }
+  touches = [];
   }
 }
 
